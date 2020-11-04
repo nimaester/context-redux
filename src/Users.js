@@ -1,26 +1,21 @@
 import React, {useState, Fragment} from 'react';
-import users from './users.json';
+import UserItem from './UserItem';
 
-const Users = () => {
+const Users = ({users}) => {
 
   return (
-    <Fragment>
-      {users.map((user) => (
-        <div className='card text-center' key={user.login}>
-          <img
-            src={user.avatar_url}
-            alt=''
-            className='round-img'
-            style={{ width: "60px" }}
-          />
-          <h3>{user.login}</h3>
-          <a href={user.html_url} className='btn btn-dark brn-sm my-1'>
-            More
-          </a>
-        </div>
+    <div style={userStyle}>
+      {users.map(user => (
+        <UserItem key={user.id} user={user}/>
       ))}
-    </Fragment>
+    </div>
   );
 };
+
+const userStyle = {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(3, 1fr)',
+  gridGap: '1rem'
+}
 
 export default Users;
