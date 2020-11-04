@@ -1,4 +1,4 @@
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import React, {useState, Fragment} from 'react';
 import UserItem from './UserItem';
 import Spinner from './Spinner';
@@ -29,8 +29,8 @@ const userStyle = {
 }
 
 Users.propTypes = {
-  users: propTypes.array.isRequired,
-  loading: propTypes.bool.isRequired
+  users: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired
 }
 
 export default Users;
