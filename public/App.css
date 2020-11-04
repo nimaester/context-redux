@@ -374,7 +374,7 @@ table th {
 }
 
 .search {
-  margin: 3rem;
+  margin: 0.6rem;
 }
 
 /* Mobile Styles */
@@ -382,6 +382,7 @@ table th {
   .hide-sm {
     display: none;
   }
+
 
   .grid-2,
   .grid-3,
