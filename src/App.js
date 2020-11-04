@@ -11,21 +11,38 @@ const App = () => {
   let [users, setUsers] = useState([]);
 
   const getData = () => {
-    axios.get('https://api.github.com/users')
-    .then((res) => (setUsers(res.data)))
+    axios.get(`https://api.github.com/users?client_id=${process.env.REACT_APP_CLIENT_ID}&client_secret=${process.env.REACT_APP_SECRET_ID}`)
+    .then((res) => {
+      setUsers(res.data)
+    })
+    .catch(() => {
+      console.log('Error')
+    })
   }
+
+  const searchUsers = (user) => {
+    axios.get(`https://api.github.com/search/users?q=${user}&client_id=${process.env.REACT_APP_CLIENT_ID}&client_secret=${process.env.REACT_APP_SECRET_ID}`)
+    .then((res) => {
+      setUsers(res.data.items)
+    })
+    .catch(() => {
+      console.log('Error')
+    })
+  }
+
+  const timer = setTimeout(() => {
+    setLoading(false);
+  }, 1500);
 
   useEffect( () => {
     getData();
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1500);
     return () => clearTimeout(timer).catch(console.log);
   }, [])
 
   return (
     <div className="App">
       <Navbar github={'Github Finder'}/>
+      <Search searchUsers={searchUsers}/>
       <div className="container">
         <Users users={users} loading={loading}/>
       </div>

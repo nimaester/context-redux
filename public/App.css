@@ -373,6 +373,10 @@ table th {
   margin-right: 0.6rem;
 }
 
+.search {
+  margin: 3rem;
+}
+
 /* Mobile Styles */
 @media (max-width: 700px) {
   .hide-sm {
@@ -409,3 +413,4 @@ table th {
     justify-content: center;
   }
 }
+
