@@ -4,7 +4,6 @@ import Navbar from './Navbar';
 import User from './Users';
 import Search from './Search';
 import Users from './Users';
-import Spinner from './Spinner'
 
 const App = () => {
 
@@ -24,25 +23,11 @@ const App = () => {
     return () => clearTimeout(timer).catch(console.log);
   }, [])
 
-
-  if (loading) {
-    return (
-      <div className="spinner">
-        <div className="bounce1"></div>
-        <div className="bounce2"></div>
-        <div className="bounce3"></div>
-        <div className="bounce4"></div>
-        <div className="bounce5"></div>
-        <h1 style={{ color: "blue", marginTop: "5px" }}>LOADING</h1>
-      </div>
-    );
-  };
-
   return (
     <div className="App">
       <Navbar github={'Github Finder'}/>
       <div className="container">
-        <Users users={users}/>
+        <Users users={users} loading={loading}/>
       </div>
 
     </div>
