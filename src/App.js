@@ -35,7 +35,6 @@ const App = () => {
   }, 800);
 
   const clearUsers = () => {
-    setLoading(true);
     if (users.length) {
       setUsers([]);
     }
