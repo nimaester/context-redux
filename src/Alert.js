@@ -1,6 +1,6 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from "react";
 
-const Alert = ({alert}) => {
+const Alert = ({ alert }) => {
   return (
     <Fragment>
       {alert !== null && (

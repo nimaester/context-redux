@@ -1,23 +1,22 @@
-import React, {useState} from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 
-const Search = ({searchUsers, clearUsers, users, changeAlert}) => {
-
-  let [query, setQuery] = useState('');
+const Search = ({ searchUsers, clearUsers, users, changeAlert }) => {
+  let [query, setQuery] = useState("");
 
   let handleChange = (event) => {
-    setQuery(event.target.value)
-  }
+    setQuery(event.target.value);
+  };
 
   let handleSubmit = (event) => {
     event.preventDefault();
-    if (query === '') {
-      changeAlert('Enter something in searchbox', 'light')
+    if (query === "") {
+      changeAlert("Enter something in searchbox", "light");
     } else {
       searchUsers(query);
-      setQuery('');
+      setQuery("");
     }
-  }
+  };
 
   return (
     <div className='search'>
@@ -48,7 +47,7 @@ Search.propTypes = {
   searchUsers: PropTypes.func.isRequired,
   clearUsers: PropTypes.func.isRequired,
   users: PropTypes.array.isRequired,
-  changeAlert: PropTypes.func.isRequired
-}
+  changeAlert: PropTypes.func.isRequired,
+};
 
 export default Search;

@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-const Repo = ({repo}) => {
+const Repo = ({ repo }) => {
   return (
     <div className='card'>
       <h3>
@@ -9,10 +9,11 @@ const Repo = ({repo}) => {
       </h3>
     </div>
   );
-};4
+};
+4;
 
 Repo.propTypes = {
-  repo: PropTypes.object.isRequired
-}
+  repo: PropTypes.object.isRequired,
+};
 
 export default Repo;

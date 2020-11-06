@@ -55,33 +55,36 @@ const App = () => {
 
   const getUser = (user) => {
     setLoading(true);
-    axios.get(`https://api.github.com/users/${user}?client_id=${process.env.REACT_APP_GITHUB_ID}&client_secret=${process.env.REACT_APP_SECRET_ID}`)
-    .then((res) => {
-      setUser(res.data);
-    })
-    .then(() => {
-      timer();
-    })
-    .catch(() => {
-      console.log(`Error getting ${user}`);
-    })
-
-  }
+    axios
+      .get(
+        `https://api.github.com/users/${user}?client_id=${process.env.REACT_APP_GITHUB_ID}&client_secret=${process.env.REACT_APP_SECRET_ID}`
+      )
+      .then((res) => {
+        setUser(res.data);
+      })
+      .then(() => {
+        clearTimeout(timer);
+      })
+      .catch(() => {
+        console.log(`Error getting ${user}`);
+      });
+  };
   const getUserRepos = (user) => {
     setLoading(true);
-    axios.get(`https://api.github.com/users/${user}/repos?per_page=57&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_ID}&client_secret=${process.env.REACT_APP_SECRET_ID}`)
-    .then((res) => {
-      setRepos(res.data);
-    })
-    .then(() => {
-      timer();
-    })
-    .catch(() => {
-      console.log(`Error getting ${user}`);
-    })
-
-  }
-
+    axios
+      .get(
+        `https://api.github.com/users/${user}/repos?per_page=57&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_ID}&client_secret=${process.env.REACT_APP_SECRET_ID}`
+      )
+      .then((res) => {
+        setRepos(res.data);
+      })
+      .then(() => {
+        clearTimeout(timer);
+      })
+      .catch(() => {
+        console.log(`Error getting ${user}`);
+      });
+  };
 
   return (
     <Router>

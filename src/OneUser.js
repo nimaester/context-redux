@@ -4,13 +4,13 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Repos from "./Repos";
 
-const OneUser = (props) => {
+const OneUser = ({ user, match, getUserRepos, getUser, loading, repos }) => {
   useEffect(() => {
-    props.getUser(props.match.params.login);
-    props.getUserRepos(props.match.params.login);
+    getUser(match.params.login);
+    getUserRepos(match.params.login);
   }, []);
 
-  if (props.loading) {
+  if (loading) {
     return <Spinner />;
   }
 
@@ -20,7 +20,7 @@ const OneUser = (props) => {
         Back to search
       </Link>
       Hireable:{" "}
-      {props.user.hirable ? (
+      {user.hirable ? (
         <i className='fas fa-check text-success' />
       ) : (
         <i className='fas fa-times-circle text-danger' />
@@ -28,43 +28,43 @@ const OneUser = (props) => {
       <div className='card grid-2'>
         <div className='all-center'>
           <img
-            src={props.user.avatar_url}
+            src={user.avatar_url}
             className='round-img'
             alt=''
             style={{ width: "150px" }}
           />
-          <h1>{props.user.name}</h1>
-          <p>Location: {props.user.location}</p>
+          <h1>{user.name}</h1>
+          <p>Location: {user.location}</p>
         </div>
         <div>
-          {props.user.bio && (
+          {user.bio && (
             <Fragment>
               <h3>Bio</h3>
-              <p>{props.user.bio}</p>
+              <p>{user.bio}</p>
             </Fragment>
           )}
-          <a href={props.user.html_url} className='btn btn-dark my-1'>
+          <a href={user.html_url} className='btn btn-dark my-1'>
             Visit Profile
           </a>
           <ul>
             <li>
-              {props.user.login && (
+              {user.login && (
                 <Fragment>
-                  <strong>Username: </strong> {props.user.login}
+                  <strong>Username: </strong> {user.login}
                 </Fragment>
               )}
             </li>
             <li>
-              {props.user.company && (
+              {user.company && (
                 <Fragment>
-                  <strong>Company: </strong> {props.user.company}
+                  <strong>Company: </strong> {user.company}
                 </Fragment>
               )}
             </li>
             <li>
-              {props.user.blog && (
+              {user.blog && (
                 <Fragment>
-                  <strong>Website: </strong> {props.user.blog}
+                  <strong>Website: </strong> {user.blog}
                 </Fragment>
               )}
             </li>
@@ -72,20 +72,14 @@ const OneUser = (props) => {
         </div>
       </div>
       <div className='card text-center'>
-        <div className='badge badge-primary'>
-          Followers: {props.user.followers}
-        </div>
-        <div className='badge badge-success'>
-          Following: {props.user.following}
-        </div>
+        <div className='badge badge-primary'>Followers: {user.followers}</div>
+        <div className='badge badge-success'>Following: {user.following}</div>
         <div className='badge badge-light'>
-          Public Repos: {props.user.public_repos}
+          Public Repos: {user.public_repos}
         </div>
-        <div className='badge badge-dark'>
-          Public Gist: {props.user.public_gist}
-        </div>
+        <div className='badge badge-dark'>Public Gist: {user.public_gist}</div>
       </div>
-      <Repos repos={props.repos} />
+      <Repos repos={repos} />
     </div>
   );
 };
@@ -95,7 +89,7 @@ OneUser.propTypes = {
   getUserRepos: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   user: PropTypes.object.isRequired,
-  repos: PropTypes.array.isRequired
+  repos: PropTypes.array.isRequired,
 };
 
 export default OneUser;
