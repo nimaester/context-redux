@@ -13,6 +13,7 @@ const App = () => {
   let [loading, setLoading] = useState(true);
   let [users, setUsers] = useState([]);
   let [user, setUser] = useState({});
+  let [repos, setRepos] = useState([]);
   let [alert, setAlert] = useState(null);
 
   const timer = setTimeout(() => {
@@ -66,6 +67,21 @@ const App = () => {
     })
 
   }
+  const getUserRepos = (user) => {
+    setLoading(true);
+    axios.get(`https://api.github.com/users/${user}/repos?per_page=57&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_ID}&client_secret=${process.env.REACT_APP_SECRET_ID}`)
+    .then((res) => {
+      setRepos(res.data);
+    })
+    .then(() => {
+      timer();
+    })
+    .catch(() => {
+      console.log(`Error getting ${user}`);
+    })
+
+  }
+
 
   return (
     <Router>
@@ -74,21 +90,36 @@ const App = () => {
         <div className='container'>
           <Alert alert={alert} />
           <Switch>
-            <Route exact path='/' render={props => (
-              <Fragment>
-              <Search
-                searchUsers={searchUsers}
-                clearUsers={clearUsers}
-                users={users}
-                changeAlert={changeAlert}
-              />
-              <Users users={users} loading={loading} />
-              </Fragment>
-            )} />
-            <Route exact path='/about' component={About}/>
-            <Route exact path='/user/:login' render={props => (
-              <OneUser { ...props} getUser={getUser} user={user} loading={loading} />
-            )}/>
+            <Route
+              exact
+              path='/'
+              render={(props) => (
+                <Fragment>
+                  <Search
+                    searchUsers={searchUsers}
+                    clearUsers={clearUsers}
+                    users={users}
+                    changeAlert={changeAlert}
+                  />
+                  <Users users={users} loading={loading} />
+                </Fragment>
+              )}
+            />
+            <Route exact path='/about' component={About} />
+            <Route
+              exact
+              path='/user/:login'
+              render={(props) => (
+                <OneUser
+                  {...props}
+                  getUser={getUser}
+                  getUserRepos={getUserRepos}
+                  repos={repos}
+                  user={user}
+                  loading={loading}
+                />
+              )}
+            />
           </Switch>
         </div>
       </div>

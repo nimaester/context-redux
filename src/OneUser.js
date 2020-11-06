@@ -2,10 +2,12 @@ import React, { useEffect, Fragment } from "react";
 import Spinner from "./Spinner";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import Repos from "./Repos";
 
 const OneUser = (props) => {
   useEffect(() => {
     props.getUser(props.match.params.login);
+    props.getUserRepos(props.match.params.login);
   }, []);
 
   if (props.loading) {
@@ -76,21 +78,24 @@ const OneUser = (props) => {
         <div className='badge badge-success'>
           Following: {props.user.following}
         </div>
-        <div className='badge badge-danger'>
+        <div className='badge badge-light'>
           Public Repos: {props.user.public_repos}
         </div>
         <div className='badge badge-dark'>
           Public Gist: {props.user.public_gist}
         </div>
       </div>
+      <Repos repos={props.repos} />
     </div>
   );
 };
 
 OneUser.propTypes = {
   getUser: PropTypes.func.isRequired,
+  getUserRepos: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   user: PropTypes.object.isRequired,
+  repos: PropTypes.array.isRequired
 };
 
 export default OneUser;
