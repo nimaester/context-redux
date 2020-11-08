@@ -18,7 +18,7 @@ const Search = ({ clearUsers, users, changeAlert }) => {
     if (query === "") {
       changeAlert("Enter something in searchbox", "light");
     } else {
-      GithubContext.searchUsers(query);
+      githubContext.searchUsers(query);
       setQuery("");
     }
   };

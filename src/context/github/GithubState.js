@@ -31,7 +31,7 @@ const GithubState = (props) => {
       )
       .then((res) => {
         dispatch({
-          type: SEACH_USERS,
+          type: SEARCH_USERS,
           payload: res.data
         })
       })
