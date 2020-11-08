@@ -9,7 +9,7 @@ import {
   CLEAR_USERS,
   GET_USER,
   GET_REPOS
-} from '../github/types.js'
+} from '../types.js'
 
 const GithubState = (props) => {
   const initialState = {
@@ -23,17 +23,14 @@ const GithubState = (props) => {
 
   // GET USERS
 
-  const searchUsers = (user) => {
+  const searchUsers = async user => {
     setLoading();
-    axios
-      .get(
+    const rest = await axios.get(
         `https://api.github.com/search/users?q=${user}&client_id=${process.env.REACT_APP_GITHUB_ID}&client_secret=${process.env.REACT_APP_SECRET_ID}`
-      )
-      .then((res) => {
-        dispatch({
-          type: SEARCH_USERS,
-          payload: res.data
-        })
+      );
+      dispatch({
+        type: SEARCH_USERS,
+        payload: res.data.items
       })
   };
 

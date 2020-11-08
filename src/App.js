@@ -88,7 +88,7 @@ const App = () => {
                       users={users}
                       changeAlert={changeAlert}
                     />
-                    <Users users={users} loading={loading} />
+                    <Users />
                   </Fragment>
                 )}
               />
