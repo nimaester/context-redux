@@ -37,23 +37,6 @@ const App = () => {
     }, 2000);
   };
 
-  const searchUsers = (user) => {
-    setLoading(true);
-    axios
-      .get(
-        `https://api.github.com/search/users?q=${user}&client_id=${process.env.REACT_APP_GITHUB_ID}&client_secret=${process.env.REACT_APP_SECRET_ID}`
-      )
-      .then((res) => {
-        setUsers(res.data.items);
-      })
-      .then(() => {
-        clearTimeout(timer);
-      })
-      .catch(() => {
-        console.log("Error getting users");
-      });
-  };
-
   const getUser = (user) => {
     setLoading(true);
     axios
@@ -101,7 +84,6 @@ const App = () => {
                 render={(props) => (
                   <Fragment>
                     <Search
-                      searchUsers={searchUsers}
                       clearUsers={clearUsers}
                       users={users}
                       changeAlert={changeAlert}
