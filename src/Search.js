@@ -1,11 +1,10 @@
 import React, { useState, useContext } from "react";
-import PropTypes from "prop-types";
 import GithubContext from './context/github/githubContext';
 
-const Search = ({ clearUsers, users, changeAlert }) => {
+const Search = () => {
 
-  const githubContext = useContext(GithubContext);
-
+  let githubContext = useContext(GithubContext);
+  let {users, clearUsers} = githubContext;
 
   let [query, setQuery] = useState("");
 
@@ -46,12 +45,6 @@ const Search = ({ clearUsers, users, changeAlert }) => {
       ) : null}
     </div>
   );
-};
-
-Search.propTypes = {
-  clearUsers: PropTypes.func.isRequired,
-  users: PropTypes.array.isRequired,
-  changeAlert: PropTypes.func.isRequired,
 };
 
 export default Search;
