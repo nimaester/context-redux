@@ -19,6 +19,17 @@ const GithubState = (props) => {
     loading: false
   }
 
+  let githubClientId;
+  let githubSecretId;
+
+  if (process.env.NODE_ENV !== 'production') {
+    githubClientId = process.env.REACT_APP_GITHUB_ID;
+    githubSecretId = process.env.REACT_APP_SECRET_ID;
+  } else {
+    githubClientId = process.env.GITHUB_ID;
+    githubSecretId = process.env.SECRET_ID;
+  }
+
   const [state, dispatch] = useReducer(GithubReducer, initialState);
 
   // GET USERS
@@ -27,7 +38,7 @@ const GithubState = (props) => {
     setLoading();
     axios
       .get(
-        `https://api.github.com/users/${user}?client_id=${process.env.REACT_APP_GITHUB_ID}&client_secret=${process.env.REACT_APP_SECRET_ID}`
+        `https://api.github.com/users/${user}?client_id=${githubClientId}&client_secret=${githubSecretId}`
       )
       .then((res) => {
         dispatch({
@@ -41,7 +52,7 @@ const GithubState = (props) => {
     setLoading();
 
       axios.get(
-        `https://api.github.com/search/users?q=${user}&client_id=${process.env.REACT_APP_GITHUB_ID}&client_secret=${process.env.REACT_APP_SECRET_ID}`
+        `https://api.github.com/search/users?q=${user}&client_id=${githubClientId}&client_secret=${githubSecretId}`
         )
         .then((res) => {
           dispatch({
@@ -58,7 +69,7 @@ const GithubState = (props) => {
     setLoading();
     axios
       .get(
-        `https://api.github.com/users/${user}/repos?per_page=57&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_ID}&client_secret=${process.env.REACT_APP_SECRET_ID}`
+        `https://api.github.com/users/${user}/repos?per_page=57&sort=created:asc&client_id=${githubClientId}&client_secret=${githubSecretId}`
       )
       .then((res) => {
         dispatch({
