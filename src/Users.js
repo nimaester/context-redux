@@ -6,7 +6,6 @@ import GithubContext from './context/github/githubContext';
 
 const Users = () => {
   let githubContext = useContext(GithubContext);
-
   let { users, loading } = githubContext;
 
   const userStyle = {
