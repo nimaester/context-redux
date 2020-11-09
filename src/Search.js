@@ -1,10 +1,13 @@
 import React, { useState, useContext } from "react";
 import GithubContext from './context/github/githubContext';
+import AlertContext from './context/alert/alertContext';
 
 const Search = () => {
 
   let githubContext = useContext(GithubContext);
   let {users, clearUsers} = githubContext;
+  let alertContext = useContext(AlertContext);
+  let {changeAlert} = alertContext;
 
   let [query, setQuery] = useState("");
 

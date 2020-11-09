@@ -12,7 +12,7 @@ const AlertState = (props) => {
 
   const [state, dispatch] = useReducer(AlertReducer, initialState);
 
-  const setAlert = (message, type) => {
+  const changeAlert = (message, type) => {
     dispatch({
       type: SET_ALERT,
       payload: {message, type}
@@ -28,7 +28,7 @@ const AlertState = (props) => {
     <AlertContext.Provider
       value={{
         alert: state,
-        setAlert,
+        changeAlert,
       }}>
       {props.children}
     </AlertContext.Provider>
