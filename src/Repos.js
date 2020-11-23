@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Repo from "./Repo";
 
 const Repos = ({ repos }) => {
-  let display = repos.map((repo) => <Repo repo={repo} key={repo.id} />);
+  let display = repos.map((repo) => <Repo className="repo" repo={repo} key={repo.id} />);
 
   return repos.length > 0 ? display : null;
 };

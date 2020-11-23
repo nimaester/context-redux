@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #9ad3bc;
+  --primary-color: #ce4e27;
   --dark-color: #333333;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
@@ -106,8 +106,8 @@ img {
 
 .card {
   padding: 1rem;
-  border: 1px solid var(--primary-color);
   margin: 0.7rem 0;
+  border: 1px double var(--primary-color);
 }
 
 .list {
@@ -169,7 +169,6 @@ img {
   margin: 3rem 0;
 }
 
-/* Grid */
 .grid-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -375,6 +374,12 @@ table th {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1rem;
+}
+
+.repo {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 1rem;
 }
 
 
